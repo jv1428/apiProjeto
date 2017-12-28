@@ -47,9 +47,9 @@ class Empregado extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_user' => 'Id User',
+            'id_user' => 'Id UserController',
             'id_equipa' => 'Id Equipa',
-            'n_empregado' => 'N Empregado',
+            'n_empregado' => 'N EmpregadoController',
             'salario' => 'Salario',
             'horas' => 'Horas',
             'horario' => 'Horario',

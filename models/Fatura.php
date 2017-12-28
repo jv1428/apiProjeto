@@ -50,8 +50,8 @@ class Fatura extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_meio_pagamento' => 'Id Meio Pagamento',
-            'id_pedidos' => 'Id Pedidos',
-            'data_fatura' => 'Data Fatura',
+            'id_pedidos' => 'Id PedidosController',
+            'data_fatura' => 'Data FaturaController',
             'obs' => 'Obs',
             'nif' => 'Nif',
         ];
