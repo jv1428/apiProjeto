@@ -55,9 +55,81 @@ $config = [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>['cliente', 'artigo', 'empregado', 'equipa', 'estado', 'fatura', 'meiopagamento', 'mesa', 'pedidos', 'pedidosemartigo', 'tipoartigo', 'tipoequipa']
+                    'controller' =>['cliente']
 
                 ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'artigo',
+                    'extraPatterns' => [
+                        'GET tipo/{tipo}' => 'filtro',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                        '{tipo}' => '<tipo:\\w+>',
+                    ],
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['empregado']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['equipa']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['estado']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['fatura']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['meiopagamento']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['mesa']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['pedidos']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['pedidosemartigo']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['tipoartigo']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['tipoequipa']
+
+                ],
+
             ],
         ],
      /************************************************/

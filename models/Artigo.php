@@ -8,11 +8,12 @@ use Yii;
  * This is the model class for table "artigo".
  *
  * @property integer $id
- * @property integer $id_tipo_ementa
+ * @property integer $id_tipo_artigo
  * @property string $nome
  * @property string $detalhes
  * @property string $preco
  * @property integer $quantidade
+ * @property string $imagem_artigo
  *
  * @property PedidosEmArtigo[] $pedidosEmArtigos
  * @property Pedidos[] $idPedidos
@@ -33,11 +34,12 @@ class Artigo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_tipo_ementa'], 'required'],
+            [['id_tipo_ementa', 'imagem_artigo'], 'required'],
             [['id_tipo_ementa', 'quantidade'], 'integer'],
             [['preco'], 'number'],
             [['nome'], 'string', 'max' => 25],
             [['detalhes'], 'string', 'max' => 100],
+            [['imagem_artigo'], 'string', 'max' => 200]
         ];
     }
 
