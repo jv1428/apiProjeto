@@ -18,6 +18,14 @@ class UserController extends ActiveController
     public function actionsLogin()
     {
 
+
+        $actions = parent::actions();
+        unset($actions['index'],$actions['view'],
+            $actions['update'],$actions['delete']);
+        return $actions;
+
+
+
 //        $login = User::find()
 //            -> join('JOIN', 'cliente',  )
 
