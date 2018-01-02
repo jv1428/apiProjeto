@@ -29,11 +29,6 @@ class UserController extends ActiveController
 //        $login = User::find()
 //            -> join('JOIN', 'cliente',  )
 
-
-        $dados = User::find()
-            ->all();
-
-        return $dados;
     }
 }
 

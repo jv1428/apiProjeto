@@ -14,12 +14,4 @@ use yii\rest\ActiveController;
 class PedidosEmArtigoController extends ActiveController
 {
     public $modelClass = 'app\models\PedidosEmArtigo';
-
-    public function actionFiltro()
-    {
-        $dados = PedidosEmArtigo::find()
-            ->all();
-
-        return $dados;
-    }
 }

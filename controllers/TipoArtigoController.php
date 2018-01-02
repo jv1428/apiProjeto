@@ -15,11 +15,4 @@ class TipoArtigoController extends ActiveController
 {
     public $modelClass = 'app\models\TipoArtigo';
 
-    public function action()
-    {
-        $dados = TipoArtigo::find()
-            ->all();
-
-        return $dados;
-    }
 }

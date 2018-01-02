@@ -90,7 +90,16 @@ $config = [
 
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>['fatura']
+                    'controller' => 'fatura',
+                    'extraPatterns' => [
+                        'GET comnif' => 'comnif',
+                        'GET semnif' => 'semnif',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                        '{comnif}' => '<comnif:\\w+>',
+                        '{semnif}' => '<semnif:\\w+>',
+                    ],
 
                 ],
 
@@ -108,7 +117,19 @@ $config = [
 
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>['pedidos']
+                    'controller' => 'pedido',
+                    'extraPatterns' => [
+                        'GET acabado' => 'acabado',
+                        'GET porfazer' => 'porfazer',
+                        'GET afazer' => 'afazer',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                        '{acabado}' => '<acabado:\\w+>',
+                        '{porfazer}' => '<porfazer:\\w+>',
+                        '{afazer}' => '<afazer:\\w+>',
+                    ],
+
 
                 ],
 

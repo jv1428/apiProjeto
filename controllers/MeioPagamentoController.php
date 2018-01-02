@@ -15,11 +15,4 @@ class MeioPagamentoController extends ActiveController
 {
     public $modelClass = 'app\models\MeioPagamento';
 
-    public function actionFiltroAcabado()
-    {
-        $dados = MeioPagamento::find()
-            ->all();
-
-        return $dados;
-    }
 }
