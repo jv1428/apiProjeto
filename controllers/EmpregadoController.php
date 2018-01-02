@@ -17,11 +17,11 @@ class EmpregadoController extends ActiveController
 {
     public $modelClass = 'app\models\Empregado';
 
-    public function actionFiltro($tipo)
+    public function actionFiltro($id_user)
     {
         $dados = Empregado::find()
             ->join('JOIN', 'user', 'user.id = empregado.id_user')
-            ->where('tipo_artigo.nome = :tipo', [':tipo' => $tipo])
+            ->where('user.id = :id_user', [':id_user' => $id_user])
             ->all();
 
         return $dados;

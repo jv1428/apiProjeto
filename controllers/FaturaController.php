@@ -10,8 +10,16 @@ namespace app\controllers;
 
 
 use yii\rest\ActiveController;
+use app\models\Fatura;
 
 class FaturaController extends ActiveController
 {
-    public $modelClass = 'app\models\Fatura';
+    public function actionFiltro($id_user)
+    {
+        $dados = Estado::find()
+            ->where('estado.tipo = Acabado', [':id_user' => $id_user])
+            ->all();
+
+        return $dados;
+    }
 }
