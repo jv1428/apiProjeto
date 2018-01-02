@@ -129,8 +129,6 @@ $config = [
                         '{porfazer}' => '<porfazer:\\w+>',
                         '{afazer}' => '<afazer:\\w+>',
                     ],
-
-
                 ],
 
                 [
