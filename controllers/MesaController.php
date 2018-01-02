@@ -10,8 +10,17 @@ namespace app\controllers;
 
 
 use yii\rest\ActiveController;
+use app\models\Mesa;
 
 class MesaController extends ActiveController
 {
     public $modelClass = 'app\models\Mesa';
+
+    public function actionFiltroAcabado($id_user)
+    {
+        $dados = Mesa::find()
+            ->all();
+
+        return $dados;
+    }
 }

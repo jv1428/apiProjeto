@@ -14,10 +14,21 @@ use app\models\Fatura;
 
 class FaturaController extends ActiveController
 {
-    public function actionFiltro($id_user)
+    public $modelClass = 'app\models\Fatura';
+
+    public function actionCnif()
     {
-        $dados = Estado::find()
-            ->where('estado.tipo = Acabado', [':id_user' => $id_user])
+        $dados = Fatura::find()
+            ->where('fatura.nif = NOT NULL')
+            ->all();
+
+        return $dados;
+    }
+
+    public function actionSnif()
+    {
+        $dados = Fatura::find()
+            ->where('fatura.nif = NULL')
             ->all();
 
         return $dados;
