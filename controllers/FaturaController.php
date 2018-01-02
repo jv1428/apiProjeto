@@ -16,19 +16,19 @@ class FaturaController extends ActiveController
 {
     public $modelClass = 'app\models\Fatura';
 
-    public function actionCnif()
+    public function actionComnif()
     {
         $dados = Fatura::find()
-            ->where('fatura.nif = NOT NULL')
+            ->where('fatura.nif IS NOT NULL')
             ->all();
 
         return $dados;
     }
 
-    public function actionSnif()
+    public function actionSemnif()
     {
         $dados = Fatura::find()
-            ->where('fatura.nif = NULL')
+            ->where('fatura.nif IS NULL')
             ->all();
 
         return $dados;

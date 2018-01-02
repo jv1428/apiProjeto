@@ -16,11 +16,4 @@ class MesaController extends ActiveController
 {
     public $modelClass = 'app\models\Mesa';
 
-    public function actionFiltroAcabado($id_user)
-    {
-        $dados = Mesa::find()
-            ->all();
-
-        return $dados;
-    }
 }

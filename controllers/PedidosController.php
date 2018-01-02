@@ -15,9 +15,31 @@ class PedidosController extends ActiveController
 {
     public $modelClass = 'app\models\Pedidos';
 
-    public function actionFiltro($id_user)
+    public function actionAcabado($id_user)
     {
-        $dados = Pedidos::find()
+        $dados = Estado::find()
+            ->join('JOIN', 'estado', 'estado.id = artigo.id_estado')
+            ->where('estado.tipo = Acabado')
+            ->all();
+
+        return $dados;
+    }
+
+    public function actionPorfazer($id_user)
+    {
+        $dados = Estado::find()
+            ->join('JOIN', 'estado', 'estado.id = artigo.id_estado')
+            ->where('estado.tipo = Por Fazer')
+            ->all();
+
+        return $dados;
+    }
+
+    public function actionAfazer($id_user)
+    {
+        $dados = Estado::find()
+            ->join('JOIN', 'estado', 'estado.id = artigo.id_estado')
+            ->where('estado.tipo = A Fazer')
             ->all();
 
         return $dados;
