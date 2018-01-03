@@ -15,8 +15,7 @@ use Yii;
  * @property integer $quantidade
  * @property string $imagem_artigo
  *
- * @property PedidosEmArtigo[] $pedidosEmArtigos
- * @property Pedidos[] $idPedidos
+ * @property TipoArtigo $idTipoArtigo
  */
 class Artigo extends \yii\db\ActiveRecord
 {
@@ -34,12 +33,13 @@ class Artigo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_tipo_ementa', 'imagem_artigo'], 'required'],
-            [['id_tipo_ementa', 'quantidade'], 'integer'],
+            [['id_tipo_artigo', 'imagem_artigo'], 'required'],
+            [['id_tipo_artigo', 'quantidade'], 'integer'],
             [['preco'], 'number'],
             [['nome'], 'string', 'max' => 25],
             [['detalhes'], 'string', 'max' => 100],
-            [['imagem_artigo'], 'string', 'max' => 200]
+            [['imagem_artigo'], 'string', 'max' => 200],
+            [['id_tipo_artigo'], 'exist', 'skipOnError' => true, 'targetClass' => TipoArtigo::className(), 'targetAttribute' => ['id_tipo_artigo' => 'id']],
         ];
     }
 
@@ -50,11 +50,12 @@ class Artigo extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_tipo_ementa' => 'Id Tipo Ementa',
+            'id_tipo_artigo' => 'Id Tipo Artigo',
             'nome' => 'Nome',
             'detalhes' => 'Detalhes',
             'preco' => 'Preco',
             'quantidade' => 'Quantidade',
+            'imagem_artigo' => 'Imagem Artigo',
         ];
     }
 
@@ -81,10 +82,10 @@ class Artigo extends \yii\db\ActiveRecord
         $myJSON= json_encode($myObj);
 
         if($insert)
-        $this->FazPublish("INSERTARTIGO",$myJSON);
+            $this->FazPublish("INSERTARTIGO",$myJSON);
         else
-        $this->FazPublish("UPDATEARTIGO",$myJSON);
-}
+            $this->FazPublish("UPDATEARTIGO",$myJSON);
+    }
 
     public function afterDelete()
     {
@@ -120,16 +121,8 @@ class Artigo extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPedidosEmArtigos()
+    public function getIdTipoArtigo()
     {
-        return $this->hasMany(PedidosEmArtigo::className(), ['id_artigo' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIdPedidos()
-    {
-        return $this->hasMany(Pedidos::className(), ['id' => 'id_pedidos'])->viaTable('pedidos_em_artigo', ['id_artigo' => 'id']);
+        return $this->hasOne(TipoArtigo::className(), ['id' => 'id_tipo_artigo']);
     }
 }

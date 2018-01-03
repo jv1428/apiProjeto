@@ -55,7 +55,7 @@ $config = [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>['cliente']
+                    'controller' =>['cliente', 'artigos']
 
                 ],
                 [

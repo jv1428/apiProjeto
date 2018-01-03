@@ -44,7 +44,7 @@ class PedidosEmArtigo extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_artigo' => 'Id ArtigoController',
+            'id_artigo' => 'Id ArtigosController',
             'id_pedidos' => 'Id PedidosController',
             'obs' => 'Obs',
         ];

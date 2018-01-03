@@ -5,20 +5,27 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tipo_artigo".
+ * This is the model class for table "artigo".
  *
  * @property integer $id
+ * @property integer $id_tipo_artigo
  * @property string $nome
  * @property string $detalhes
+ * @property string $preco
+ * @property integer $quantidade
+ * @property string $imagem_artigo
+ *
+ * @property PedidosEmArtigo[] $pedidosEmArtigos
+ * @property Pedidos[] $idPedidos
  */
-class TipoArtigo extends \yii\db\ActiveRecord
+class Artigo extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'tipo_artigo';
+        return 'artigo';
     }
 
     /**
@@ -27,8 +34,12 @@ class TipoArtigo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['id_tipo_ementa', 'imagem_artigo'], 'required'],
+            [['id_tipo_ementa', 'quantidade'], 'integer'],
+            [['preco'], 'number'],
             [['nome'], 'string', 'max' => 25],
             [['detalhes'], 'string', 'max' => 100],
+            [['imagem_artigo'], 'string', 'max' => 200]
         ];
     }
 
@@ -39,8 +50,11 @@ class TipoArtigo extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'id_tipo_ementa' => 'Id Tipo Ementa',
             'nome' => 'Nome',
             'detalhes' => 'Detalhes',
+            'preco' => 'Preco',
+            'quantidade' => 'Quantidade',
         ];
     }
 
@@ -50,19 +64,27 @@ class TipoArtigo extends \yii\db\ActiveRecord
 
         $id=$this->id;
         $detalhes=$this->detalhes;
+        $id_tipo_artigo=$this->id_tipo_artigo;
+        $imagem_artigo=$this->imagem_artigo;
         $nome=$this->nome;
+        $preco=$this->preco;
+        $quantidade=$this->quantidade;
 
         $myObj=new \stdClass();
         $myObj->id=$id;
         $myObj->detalhes=$detalhes;
+        $myObj->id_tipo_artigo=$id_tipo_artigo;
+        $myObj->imagem_artigo=$imagem_artigo;
         $myObj->nome=$nome;
+        $myObj->preco=$preco;
+        $myObj->quantidade=$quantidade;
         $myJSON= json_encode($myObj);
 
         if($insert)
-            $this->FazPublish("INSERTTIPOARTIGO",$myJSON);
+        $this->FazPublish("INSERTARTIGO",$myJSON);
         else
-            $this->FazPublish("UPDATETIPOARTIGO",$myJSON);
-    }
+        $this->FazPublish("UPDATEARTIGO",$myJSON);
+}
 
     public function afterDelete()
     {
@@ -73,7 +95,7 @@ class TipoArtigo extends \yii\db\ActiveRecord
         $myObj->id=$prod_id;
         $myJSON= json_encode($myObj);
 
-        $this->FazPublish("DELETETIPOARTIGO",$myJSON);
+        $this->FazPublish("DELETEARTIGO",$myJSON);
     }
 
 
@@ -93,5 +115,21 @@ class TipoArtigo extends \yii\db\ActiveRecord
         } else {
             file_put_contents("debug.output", "Timeout!");
         }
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPedidosEmArtigos()
+    {
+        return $this->hasMany(PedidosEmArtigo::className(), ['id_artigo' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdPedidos()
+    {
+        return $this->hasMany(Pedidos::className(), ['id' => 'id_pedidos'])->viaTable('pedidos_em_artigo', ['id_artigo' => 'id']);
     }
 }

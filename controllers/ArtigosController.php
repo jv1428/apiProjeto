@@ -12,7 +12,7 @@ use app\models\Artigo;
 use app\models\TipoArtigo;
 use yii\rest\ActiveController;
 
-class ArtigoController extends ActiveController
+class ArtigosController extends ActiveController
 {
     public $modelClass = 'app\models\Artigo';
 
@@ -25,4 +25,6 @@ class ArtigoController extends ActiveController
 
         return $dados;
     }
+
+
 }
