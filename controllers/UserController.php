@@ -9,6 +9,7 @@
 namespace app\controllers;
 
 use app\models\User;
+use Yii;
 use yii\rest\ActiveController;
 
 class UserController extends ActiveController
@@ -30,6 +31,15 @@ class UserController extends ActiveController
 //            -> join('JOIN', 'cliente',  )
 
     }
+
+    public function actionLogins()
+    {
+
+        $dados = yii::$app -> request -> post();
+
+        return $dados;
+    }
+
 }
 
     /*

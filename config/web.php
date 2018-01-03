@@ -149,6 +149,18 @@ $config = [
 
                 ],
 
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'user',
+                    'extraPatterns' => [
+                        'GET logins' => 'logins',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                        '{logins}' => '<logins:\\w+>',
+                    ],
+                ],
+
 
             ],
         ],

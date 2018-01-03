@@ -19,7 +19,7 @@ $topics['bluerhinos/phpMQTT/examples/publishtest'] = array("qos" => 0, "function
 $mqtt->subscribe($topics, 0);
 
 while($mqtt->proc()){
-		
+
 }
 
 
