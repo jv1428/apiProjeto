@@ -63,7 +63,7 @@ class Artigo extends \yii\db\ActiveRecord
 
         parent::afterSave($insert, $changedAttributes);
 
-        $id=$this->id;
+        /*$id=$this->id;
         $detalhes=$this->detalhes;
         $id_tipo_artigo=$this->id_tipo_artigo;
         $imagem_artigo=$this->imagem_artigo;
@@ -79,12 +79,14 @@ class Artigo extends \yii\db\ActiveRecord
         $myObj->nome=$nome;
         $myObj->preco=$preco;
         $myObj->quantidade=$quantidade;
-        $myJSON= json_encode($myObj);
+        $myJSON= json_encode($myObj);*/
 
         if($insert)
-            $this->FazPublish("INSERTARTIGO",$myJSON);
+            //$this->FazPublish("INSERTARTIGO",$myJSON);
+        $this->FazPublish("Artigo", ("O artigo com o id ".$this->id." foi Adicionado!"));
         else
-            $this->FazPublish("UPDATEARTIGO",$myJSON);
+            //$this->FazPublish("UPDATEARTIGO",$myJSON);
+        $this->FazPublish("Artigo", ("O artigo com o id ".$this->id." foi editado!"));
     }
 
     public function afterDelete()
@@ -92,11 +94,11 @@ class Artigo extends \yii\db\ActiveRecord
         parent::afterDelete();
 
         $prod_id= $this->id;
-        $myObj=new \stdClass();
+        /*$myObj=new \stdClass();
         $myObj->id=$prod_id;
-        $myJSON= json_encode($myObj);
+        $myJSON= json_encode($myObj);*/
 
-        $this->FazPublish("DELETEARTIGO",$myJSON);
+        $this->FazPublish("Artigo", ("O artigo com o id ".$this->id." foi eliminado!"));
     }
 
 
