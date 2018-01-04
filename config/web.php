@@ -26,7 +26,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -123,7 +123,7 @@ $config = [
 
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => 'pedido',
+                    'controller' => 'pedidos',
                     'extraPatterns' => [
                         'GET acabado' => 'acabado',
                         'GET porfazer' => 'porfazer',
@@ -174,12 +174,6 @@ $config = [
      /************************************************/
     ],
     'params' => $params,
-    'modules' =>
-        [
-            'api' => [
-                'class' => 'app\modules\api\Module',
-            ],
-        ],
 ];
 
 if (YII_ENV_DEV) {
@@ -188,14 +182,14 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-    'allowedIPs' => ['127.0.0.1', '::1'],
+    //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '::1'],
+       // 'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
 

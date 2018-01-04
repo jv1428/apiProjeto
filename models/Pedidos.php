@@ -37,7 +37,7 @@ class Pedidos extends \yii\db\ActiveRecord
     {
         return [
             [['id_user', 'id_mesa', 'id_estado'], 'required'],
-            [['id_user', 'id_mesa', 'id_estado'], 'integer'],
+            [['id', 'id_user', 'id_mesa', 'id_estado'], 'integer'],
             [['data_pedido'], 'safe'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
             [['id_mesa'], 'exist', 'skipOnError' => true, 'targetClass' => Mesa::className(), 'targetAttribute' => ['id_mesa' => 'id']],

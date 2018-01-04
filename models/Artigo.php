@@ -58,11 +58,11 @@ class Artigo extends \yii\db\ActiveRecord
             'imagem_artigo' => 'Imagem Artigo',
         ];
     }
-
+/*
     public function afterSave($insert, $changedAttributes){
 
         parent::afterSave($insert, $changedAttributes);
-
+*/
         /*$id=$this->id;
         $detalhes=$this->detalhes;
         $id_tipo_artigo=$this->id_tipo_artigo;
@@ -80,7 +80,7 @@ class Artigo extends \yii\db\ActiveRecord
         $myObj->preco=$preco;
         $myObj->quantidade=$quantidade;
         $myJSON= json_encode($myObj);*/
-
+/*
         if($insert)
             //$this->FazPublish("INSERTARTIGO",$myJSON);
         $this->FazPublish("Artigo", ("O artigo com o id ".$this->id." foi Adicionado!"));
@@ -88,7 +88,8 @@ class Artigo extends \yii\db\ActiveRecord
             //$this->FazPublish("UPDATEARTIGO",$myJSON);
         $this->FazPublish("Artigo", ("O artigo com o id ".$this->id." foi editado!"));
     }
-
+*/
+/*
     public function afterDelete()
     {
         parent::afterDelete();
@@ -97,12 +98,12 @@ class Artigo extends \yii\db\ActiveRecord
         /*$myObj=new \stdClass();
         $myObj->id=$prod_id;
         $myJSON= json_encode($myObj);*/
-
+/*
         $this->FazPublish("Artigo", ("O artigo com o id ".$this->id." foi eliminado!"));
     }
+*/
 
-
-
+/*
     public function FazPublish($canal,$msg)
     {
         $server = "127.0.0.1";
@@ -119,6 +120,8 @@ class Artigo extends \yii\db\ActiveRecord
             file_put_contents("debug.output", "Timeout!");
         }
     }
+*/
+
 
     /**
      * @return \yii\db\ActiveQuery

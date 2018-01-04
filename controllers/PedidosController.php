@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 use app\models\Pedidos;
+use app\models\Estado;
 
 use yii\rest\ActiveController;
 
