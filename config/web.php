@@ -55,12 +55,12 @@ $config = [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>['cliente', 'artigos']
+                    'controller' =>['cliente']
 
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => 'artigo',
+                    'controller' => 'artigos',
                     'extraPatterns' => [
                         'GET tipo/{tipo}' => 'filtro',
                     ],
@@ -69,7 +69,13 @@ $config = [
                         '{tipo}' => '<tipo:\\w+>',
                     ],
                 ],
-
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'user',
+                    'extraPatterns' => [
+                        'GET {id}/tipo' => 'user',
+                    ],
+                ],
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' =>['empregado']
@@ -146,6 +152,19 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' =>['tipoequipa']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>'reservas',
+                    'extraPatterns' => [
+                        'GET {hora}/mesa' => 'filtro',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                        '{hora}' => '<hora:\\w+>',
+                    ],
 
                 ],
 

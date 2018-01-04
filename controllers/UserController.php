@@ -9,13 +9,16 @@
 namespace app\controllers;
 
 use app\models\User;
+use app\models\Cliente;
+use app\models\Empregado;
 use yii\rest\ActiveController;
+use yii\web\NotFoundHttpException;
 
 class UserController extends ActiveController
 {
     public $modelClass = 'app\models\User';
 
-    public function actionsLogin()
+    /*public function actionsLogin()
     {
 
 
@@ -23,22 +26,21 @@ class UserController extends ActiveController
         unset($actions['index'],$actions['view'],
             $actions['update'],$actions['delete']);
         return $actions;
+    }*/
 
+    public function actionUser($id)
+    {
+        $user = User::findOne(['id' => $id]);
 
+        if ($user) {
+            if ($clientes = Cliente::findOne(['id_user' => $id])) {
+                return $clientes;
+            } else if ($empregado = Empregado::findOne(['id_user' => $id])) {
+                return $empregado;
+            }
 
-//        $login = User::find()
-//            -> join('JOIN', 'cliente',  )
-
+        }
     }
+
 }
 
-    /*
-
-        $dados = Artigo::find()
-            ->join('JOIN', 'tipo_artigo', 'tipo_artigo.id = artigo.id_tipo_artigo')
-            ->where('tipo_artigo.nome = :tipo', [':tipo' => $tipo])
-            ->all();
-
-        return $dados;
-    }
-}*/
