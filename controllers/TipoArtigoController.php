@@ -10,9 +10,19 @@ namespace app\controllers;
 use app\models\TipoArtigo;
 
 use yii\rest\ActiveController;
+use yii\filters\auth\HttpBasicAuth;
 
 class TipoArtigoController extends ActiveController
 {
     public $modelClass = 'app\models\TipoArtigo';
+
+    public function behaviors()
+    {
+        return [
+            'basicAuth' => [
+                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+            ],
+        ];
+    }
 
 }

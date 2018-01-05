@@ -10,8 +10,18 @@ namespace app\controllers;
 use app\models\PedidosEmArtigo;
 
 use yii\rest\ActiveController;
+use yii\filters\auth\HttpBasicAuth;
 
 class PedidosEmArtigoController extends ActiveController
 {
     public $modelClass = 'app\models\PedidosEmArtigo';
+
+    public function behaviors()
+    {
+        return [
+            'basicAuth' => [
+                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+            ],
+        ];
+    }
 }

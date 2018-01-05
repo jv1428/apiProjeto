@@ -63,5 +63,23 @@ class UserController extends ActiveController
     public function actionAutenticacao($nomeutilizador, $palavrapasse){
 
     }
+
+    public function behaviors()
+    {
+        return [
+            'basicAuth' => [
+                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+                'auth' => function ($username, $password) {
+                    $user = User::find()->where(['username' => $username])->one();
+                    if ($user->verifyPassword($password)) {
+                        return $user;
+                    }
+                    return null;
+                },
+            ],
+        ];
+    }
+
+
 }
 

@@ -11,6 +11,7 @@ use app\models\Pedidos;
 use app\models\Estado;
 
 use yii\rest\ActiveController;
+use yii\filters\auth\HttpBasicAuth;
 
 class PedidosController extends ActiveController
 {
@@ -44,5 +45,14 @@ class PedidosController extends ActiveController
             ->all();
 
         return $dados;
+    }
+
+    public function behaviors()
+    {
+        return [
+            'basicAuth' => [
+                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+            ],
+        ];
     }
 }

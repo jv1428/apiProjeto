@@ -11,6 +11,7 @@ namespace app\controllers;
 use app\models\Artigo;
 use app\models\TipoArtigo;
 use yii\rest\ActiveController;
+use yii\filters\auth\HttpBasicAuth;
 
 class ArtigosController extends ActiveController
 {
@@ -24,6 +25,15 @@ class ArtigosController extends ActiveController
             ->all();
 
         return $dados;
+    }
+
+    public function behaviors()
+    {
+        return [
+            'basicAuth' => [
+                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+            ],
+        ];
     }
 
 

@@ -12,6 +12,7 @@ namespace app\controllers;
 use app\models\Empregado;
 use app\models\User;
 use yii\rest\ActiveController;
+use yii\filters\auth\HttpBasicAuth;
 
 class EmpregadoController extends ActiveController
 {
@@ -25,5 +26,14 @@ class EmpregadoController extends ActiveController
             ->all();
 
         return $dados;
+    }
+
+    public function behaviors()
+    {
+        return [
+            'basicAuth' => [
+                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+            ],
+        ];
     }
 }

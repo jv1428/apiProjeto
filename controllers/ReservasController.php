@@ -11,6 +11,7 @@ namespace app\controllers;
 
 use app\models\Reserva;
 use yii\rest\ActiveController;
+use yii\filters\auth\HttpBasicAuth;
 
 
 class ReservasController extends ActiveController
@@ -22,5 +23,14 @@ class ReservasController extends ActiveController
         $dados = Reserva::find()->where(['like','horario', $hora])->all();
 
         return $dados;
+    }
+
+    public function behaviors()
+    {
+        return [
+            'basicAuth' => [
+                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+            ],
+        ];
     }
 }
