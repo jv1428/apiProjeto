@@ -15,6 +15,18 @@ use yii\filters\auth\HttpBasicAuth;
 
 class ArtigosController extends ActiveController
 {
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+
+        $behaviors['authenticator'] = [
+            'class' => \yii\filters\auth\HttpBasicAuth::className(),
+            'auth' => [$this, 'auth']
+        ];
+
+        return $behaviors;
+    }
+
     public $modelClass = 'app\models\Artigo';
 
     public function actionFiltro($tipo)
@@ -27,14 +39,15 @@ class ArtigosController extends ActiveController
         return $dados;
     }
 
-    public function behaviors()
+    public function auth($username, $password)
     {
-        return [
-            'basicAuth' => [
-                'class' => \yii\filters\auth\HttpBasicAuth::className(),
-            ],
-        ];
+
+        $user = \app\models\User::findOne(['username' => $username, 'password' => $password]);
+
+        return $user;
     }
+
+
 
 
 }

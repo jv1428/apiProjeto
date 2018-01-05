@@ -16,12 +16,12 @@ class TipoEquipaController extends ActiveController
 {
     public $modelClass = 'app\models\TipoEquipa';
 
-    public function behaviors()
-    {
-        return [
-            'basicAuth' => [
-                'class' => \yii\filters\auth\HttpBasicAuth::className(),
-            ],
-        ];
-    }
+//    public function behaviors()
+//    {
+//        return [
+//            'basicAuth' => [
+//                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+//            ],
+//        ];
+//    }
 }

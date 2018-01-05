@@ -16,13 +16,13 @@ class TipoArtigoController extends ActiveController
 {
     public $modelClass = 'app\models\TipoArtigo';
 
-    public function behaviors()
-    {
-        return [
-            'basicAuth' => [
-                'class' => \yii\filters\auth\HttpBasicAuth::className(),
-            ],
-        ];
-    }
+//    public function behaviors()
+//    {
+//        return [
+//            'basicAuth' => [
+//                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+//            ],
+//        ];
+//    }
 
 }

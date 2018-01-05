@@ -35,12 +35,12 @@ class FaturaController extends ActiveController
         return $dados;
     }
 
-    public function behaviors()
-    {
-        return [
-            'basicAuth' => [
-                'class' => \yii\filters\auth\HttpBasicAuth::className(),
-            ],
-        ];
-    }
+//    public function behaviors()
+//    {
+//        return [
+//            'basicAuth' => [
+//                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+//            ],
+//        ];
+//    }
 }

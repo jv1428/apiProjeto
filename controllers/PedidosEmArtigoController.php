@@ -16,12 +16,12 @@ class PedidosEmArtigoController extends ActiveController
 {
     public $modelClass = 'app\models\PedidosEmArtigo';
 
-    public function behaviors()
-    {
-        return [
-            'basicAuth' => [
-                'class' => \yii\filters\auth\HttpBasicAuth::className(),
-            ],
-        ];
-    }
+//    public function behaviors()
+//    {
+//        return [
+//            'basicAuth' => [
+//                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+//            ],
+//        ];
+//    }
 }

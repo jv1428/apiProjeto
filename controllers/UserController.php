@@ -12,6 +12,7 @@ use app\models\User;
 use app\models\Cliente;
 use app\models\Empregado;
 use yii\rest\ActiveController;
+
 use yii\web\NotFoundHttpException;
 use yii\filters\auth\HttpBasicAuth;
 
@@ -68,7 +69,7 @@ class UserController extends ActiveController
     {
         return [
             'basicAuth' => [
-                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+                'class' => HttpBasicAuth::className(),
                 'auth' => function ($username, $password) {
                     $user = User::find()->where(['username' => $username])->one();
                     if ($user->verifyPassword($password)) {
