@@ -46,7 +46,7 @@ class UserController extends ActiveController
     public function actionValidacao( $idvalidacao)
     {
         $model = new $this->modelClass;
-        $utilizador = $model ::find()->where(['IdValidacao' => $idvalidacao])->one();
+        $utilizador = $model :: find()->where(['IdValidacao' => $idvalidacao])->one();
         if(is_null( $utilizador))
             echo "Erro durante validacao..." ;
         else
@@ -60,6 +60,8 @@ class UserController extends ActiveController
         }
     }
 
-    //falta autenticacao
+    public function actionAutenticacao($nomeutilizador, $palavrapasse){
+
+    }
 }
 

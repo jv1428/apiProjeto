@@ -190,12 +190,29 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
+    public function beforeSave($insert)
+    {
+        parent::beforeSave($insert);
+        if($insert)
+        {
+        //Definir o Estado e o IdValidacao
+            $dt=Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
+            $dtHash = md5($dt);
+            $this->IdValidacao=$dtHash;
+            $this->Estado=1;
+            return true;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public function validaUser($dados){
 
         self::findByUsername($dados["username"]);
 
         return $this->validatePassword($dados[$this->password]);
-
 
     }
 }
