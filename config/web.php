@@ -118,7 +118,7 @@ $config = [
 
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>['meiopagamento']
+                    'controller' =>['meio-pagamento']
 
                 ],
 
@@ -146,19 +146,19 @@ $config = [
 
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>['pedidosemartigo']
+                    'controller' =>'pedidos-em-artigo'
 
                 ],
 
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>['tipoartigo']
+                    'controller' =>['tipo-artigo']
 
                 ],
 
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>['tipoequipa']
+                    'controller' =>['tipo-equipa']
 
                 ],
 

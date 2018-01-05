@@ -30,8 +30,8 @@ class Reserva extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'id_mesa'], 'required'],
-            [['id', 'quantidade_pessoas', 'id_mesa'], 'integer'],
+            [['nome', 'numeroTelefone', 'quantidade_pessoas', 'horario', 'id_mesa'], 'required'],
+            [['quantidade_pessoas', 'id_mesa'], 'integer'],
             [['nome'], 'string', 'max' => 60],
             [['numeroTelefone'], 'string', 'max' => 25],
             [['horario'], 'string', 'max' => 10],
@@ -51,10 +51,5 @@ class Reserva extends \yii\db\ActiveRecord
             'horario' => 'Horario',
             'id_mesa' => 'Id Mesa',
         ];
-    }
-
-    public function getIdReserva()
-    {
-        return $this->hasOne(Reserva::className(), ['id' => 'id']);
     }
 }
