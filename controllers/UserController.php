@@ -13,6 +13,7 @@ use app\models\Cliente;
 use app\models\Empregado;
 use yii\rest\ActiveController;
 use yii\web\NotFoundHttpException;
+use yii\filters\auth\HttpBasicAuth;
 
 class UserController extends ActiveController
 {
@@ -41,6 +42,24 @@ class UserController extends ActiveController
 
         }
     }
+        //ficha
+    public function actionValidacao( $idvalidacao)
+    {
+        $model = new $this->modelClass;
+        $utilizador = $model ::find()->where(['IdValidacao' => $idvalidacao])->one();
+        if(is_null( $utilizador))
+            echo "Erro durante validacao..." ;
+        else
+        {
+            $utilizador->IdValidacao = " ";
+            $utilizador->Estado= 2;
+            if($utilizador->save ())
+                echo "Operação realizada com sucesso" ;
+            else
+                echo "Impossivel validar registo" ;
+        }
+    }
 
+    //falta autenticacao
 }
 

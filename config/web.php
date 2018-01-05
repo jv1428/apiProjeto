@@ -72,8 +72,16 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'user',
+                    //adicionado pela ficha
+                    [
+                        'class' => 'yii\rest\UrlRule',
+                        'controller' => 'user',
+                        'tokens' => ['{idvalidacao}'=>'<idvalidacao:\\w+>', '{username}'=>'<username:\\w+>', '{email}'=>'<email:\\w+>'],
+                        'extraPatterns' => [ 'GET validacao/{idvalidacao}' => 'validacao'],
+                    ],
                     'extraPatterns' => [
-                        'GET {id}/tipo' => 'user',
+                        '{idvalidacao}'
+                       /* 'GET {id}/tipo' => 'user', */
                     ],
                 ],
                 [
