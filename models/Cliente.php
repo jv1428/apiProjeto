@@ -14,7 +14,7 @@ use Yii;
  *
  * @property User $idUser
  */
-class Clientes extends \yii\db\ActiveRecord
+class Cliente extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -45,7 +45,7 @@ class Clientes extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_user' => 'Id User',
+            'id_user' => 'Id UserController',
             'email' => 'Email',
             'numeroTelefone' => 'Numero Telefone',
             'morada' => 'Morada',
@@ -59,4 +59,6 @@ class Clientes extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
+
+
 }

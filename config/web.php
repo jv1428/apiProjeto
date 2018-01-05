@@ -26,7 +26,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -55,12 +55,126 @@ $config = [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => 'clientes'
+                    'controller' => 'cliente'
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => 'artigos'
+                    'controller' => 'artigos',
+                    'extraPatterns' => [
+                        'GET tipo/{tipo}' => 'filtro',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                        '{tipo}' => '<tipo:\\w+>',
+                    ],
                 ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'user',
+                    'extraPatterns' => [
+                        'GET validacao/{idvalidacao}' => 'validacao',
+                        'GET autenticacao/{ nomeutilizador} /{palavrapasse}' => 'autenticacao'
+                    ],
+                    'tokens' => [
+                        '{idvalidacao}'=>' <idvalidacao:\\w + >',
+                        '{nomeutilizador}'=>'< nomeutilizador:\\w+ >',
+                        '{palavrapasse}'=>'< palavrapasse :\\w + >'
+                    ],
+
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['empregado']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['equipa']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['estado']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'fatura',
+                    'extraPatterns' => [
+                        'GET comnif' => 'comnif',
+                        'GET semnif' => 'semnif',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                        '{comnif}' => '<comnif:\\w+>',
+                        '{semnif}' => '<semnif:\\w+>',
+                    ],
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['meio-pagamento']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['mesa']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'pedidos',
+                    'extraPatterns' => [
+                        'GET acabado' => 'acabado',
+                        'GET porfazer' => 'porfazer',
+                        'GET afazer' => 'afazer',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                        '{acabado}' => '<acabado:\\w+>',
+                        '{porfazer}' => '<porfazer:\\w+>',
+                        '{afazer}' => '<afazer:\\w+>',
+                    ],
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>'pedidos-em-artigo'
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['tipo-artigo']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>['tipo-equipa']
+
+                ],
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>'reservas',
+                    'extraPatterns' => [
+                        'GET {hora}/mesa' => 'filtro',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                        '{hora}' => '<hora:\\w+>',
+                    ],
+
+                ],
+
+
             ],
         ],
      /************************************************/
@@ -74,14 +188,14 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '::1'],
+        //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '::1'],
+        //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
 

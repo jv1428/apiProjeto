@@ -5,23 +5,27 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "equipa".
+ * This is the model class for table "artigo".
  *
  * @property integer $id
+ * @property integer $id_tipo_artigo
  * @property string $nome
- * @property integer $id_tipo_equipa
+ * @property string $detalhes
+ * @property string $preco
+ * @property integer $quantidade
+ * @property string $imagem_artigo
  *
- * @property Empregado[] $empregados
- * @property TipoEquipa $idTipoEquipa
+ * @property PedidosEmArtigo[] $pedidosEmArtigos
+ * @property Pedidos[] $idPedidos
  */
-class Equipa extends \yii\db\ActiveRecord
+class Artigo extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'equipa';
+        return 'artigo';
     }
 
     /**
@@ -30,10 +34,12 @@ class Equipa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_tipo_equipa'], 'required'],
-            [['id_tipo_equipa'], 'integer'],
+            [['id_tipo_ementa', 'imagem_artigo'], 'required'],
+            [['id_tipo_ementa', 'quantidade'], 'integer'],
+            [['preco'], 'number'],
             [['nome'], 'string', 'max' => 25],
-            [['id_tipo_equipa'], 'exist', 'skipOnError' => true, 'targetClass' => TipoEquipa::className(), 'targetAttribute' => ['id_tipo_equipa' => 'id']],
+            [['detalhes'], 'string', 'max' => 100],
+            [['imagem_artigo'], 'string', 'max' => 200]
         ];
     }
 
@@ -44,8 +50,11 @@ class Equipa extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'id_tipo_ementa' => 'Id Tipo Ementa',
             'nome' => 'Nome',
-            'id_tipo_equipa' => 'Id Tipo Equipa',
+            'detalhes' => 'Detalhes',
+            'preco' => 'Preco',
+            'quantidade' => 'Quantidade',
         ];
     }
 
@@ -54,21 +63,28 @@ class Equipa extends \yii\db\ActiveRecord
         parent::afterSave($insert, $changedAttributes);
 
         $id=$this->id;
+        $detalhes=$this->detalhes;
         $id_tipo_artigo=$this->id_tipo_artigo;
+        $imagem_artigo=$this->imagem_artigo;
         $nome=$this->nome;
-
+        $preco=$this->preco;
+        $quantidade=$this->quantidade;
 
         $myObj=new \stdClass();
         $myObj->id=$id;
+        $myObj->detalhes=$detalhes;
         $myObj->id_tipo_artigo=$id_tipo_artigo;
+        $myObj->imagem_artigo=$imagem_artigo;
         $myObj->nome=$nome;
+        $myObj->preco=$preco;
+        $myObj->quantidade=$quantidade;
         $myJSON= json_encode($myObj);
 
         if($insert)
-            $this->FazPublish("INSERTEQUIPA",$myJSON);
+        $this->FazPublish("INSERTARTIGO",$myJSON);
         else
-            $this->FazPublish("UPDATEEQUIPA",$myJSON);
-    }
+        $this->FazPublish("UPDATEARTIGO",$myJSON);
+}
 
     public function afterDelete()
     {
@@ -79,7 +95,7 @@ class Equipa extends \yii\db\ActiveRecord
         $myObj->id=$prod_id;
         $myJSON= json_encode($myObj);
 
-        $this->FazPublish("DELETEEQUIPA",$myJSON);
+        $this->FazPublish("DELETEARTIGO",$myJSON);
     }
 
 
@@ -104,16 +120,16 @@ class Equipa extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEmpregados()
+    public function getPedidosEmArtigos()
     {
-        return $this->hasMany(Empregado::className(), ['id_equipa' => 'id']);
+        return $this->hasMany(PedidosEmArtigo::className(), ['id_artigo' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdTipoEquipa()
+    public function getIdPedidos()
     {
-        return $this->hasOne(TipoEquipa::className(), ['id' => 'id_tipo_equipa']);
+        return $this->hasMany(Pedidos::className(), ['id' => 'id_pedidos'])->viaTable('pedidos_em_artigo', ['id_artigo' => 'id']);
     }
 }
