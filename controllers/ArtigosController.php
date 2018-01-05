@@ -39,15 +39,11 @@ class ArtigosController extends ActiveController
         return $dados;
     }
 
-    public function auth($username, $password)
+    public function auth($username, $password_hash)
     {
 
-        $user = \app\models\User::findOne(['username' => $username, 'password' => $password]);
+        $user = \app\models\User::findOne(['username' => $username, 'password_hash' => $password_hash]);
 
         return $user;
     }
-
-
-
-
 }

@@ -22,8 +22,6 @@ class UserController extends ActiveController
 
     /*public function actionsLogin()
     {
-
-
         $actions = parent::actions();
         unset($actions['index'],$actions['view'],
             $actions['update'],$actions['delete']);
@@ -42,6 +40,7 @@ class UserController extends ActiveController
             }
 
         }
+        return true;
     }
         //ficha
     public function actionValidacao( $idvalidacao)
@@ -54,15 +53,11 @@ class UserController extends ActiveController
         {
             $utilizador->IdValidacao = " ";
             $utilizador->Estado= 2;
-            if($utilizador->save ())
+            if($utilizador->save())
                 echo "Operação realizada com sucesso" ;
             else
                 echo "Impossivel validar registo" ;
         }
-    }
-
-    public function actionAutenticacao($nomeutilizador, $palavrapasse){
-
     }
 
     public function behaviors()
@@ -70,9 +65,9 @@ class UserController extends ActiveController
         return [
             'basicAuth' => [
                 'class' => HttpBasicAuth::className(),
-                'auth' => function ($username, $password) {
+                'auth' => function ($username, $password_hash) {
                     $user = User::find()->where(['username' => $username])->one();
-                    if ($user->verifyPassword($password)) {
+                    if ($user->verifyPassword($password_hash)) {
                         return $user;
                     }
                     return null;
@@ -80,7 +75,5 @@ class UserController extends ActiveController
             ],
         ];
     }
-
-
 }
 
