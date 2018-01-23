@@ -26,6 +26,7 @@ class TipoEquipaController extends ActiveController
         ];
 
         return $behaviors;
+        //
     }
 
     public function auth($username, $password)
