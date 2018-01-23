@@ -8,6 +8,30 @@ class ClienteController extends ActiveController
 {
     public $modelClass = 'app\models\Cliente';
 
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+
+        $behaviors['authenticator'] = [
+            'class' => \yii\filters\auth\HttpBasicAuth::className(),
+            'auth' => [$this, 'auth']
+        ];
+
+        return $behaviors;
+    }
+
+    public function auth($username, $password)
+    {
+
+        $user = User::findOne(['username' => $username]);
+
+        if ($user->validatePassword($password)) {
+            return $user;
+        }
+
+        return null;
+    }
+
     public function actionFiltro($id_user)
     {
         $dados = Cliente::find()

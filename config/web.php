@@ -72,14 +72,13 @@ $config = [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'user',
                     'extraPatterns' => [
-                        'GET validacao/{idvalidacao}' => 'validacao',
-                        'GET autenticacao/{ nomeutilizador} /{palavrapasse}' => 'autenticacao'
+                        'GET {username}/tipo' => 'user',
                     ],
                     'tokens' => [
-                        '{idvalidacao}'=>' <idvalidacao:\\w + >',
-                        '{nomeutilizador}'=>'< nomeutilizador:\\w+ >',
-                        '{palavrapasse}'=>'< palavrapasse :\\w + >'
+                        '{id}' => '<id:\\d+>',
+                        '{username}' => '<username:\\w+>',
                     ],
+
 
                 ],
                 [
@@ -145,8 +144,14 @@ $config = [
 
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>'pedidos-em-artigo'
-
+                    'controller' =>'pedidos-em-artigo',
+                    'extraPatterns' => [
+                        'GET pedido' => 'filtro',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                        '{pedido}' => '<pedido:\\w+>',
+                    ],
                 ],
 
                 [

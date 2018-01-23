@@ -12,6 +12,7 @@ use Yii;
  * @property integer $id_mesa
  * @property integer $id_estado
  * @property string $data_pedido
+ * @property string $hora_pedido
  *
  * @property Fatura[] $faturas
  * @property User $idUser
@@ -36,7 +37,7 @@ class Pedidos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user', 'id_mesa', 'id_estado'], 'required'],
+            [['id_user', 'id_mesa', 'id_estado', 'hora_pedido'], 'required'],
             [['id', 'id_user', 'id_mesa', 'id_estado'], 'integer'],
             [['data_pedido'], 'safe'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
@@ -56,6 +57,7 @@ class Pedidos extends \yii\db\ActiveRecord
             'id_mesa' => 'Id MesaController',
             'id_estado' => 'Id EstadoController',
             'data_pedido' => 'Data Pedido',
+            'hora_pedido' => 'Hora Pedido',
         ];
     }
 

@@ -19,30 +19,49 @@ class UserController extends ActiveController
 {
     public $modelClass = 'app\models\User';
 
-    /*public function actionsLogin()
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+
+        $behaviors['authenticator'] = [
+            'class' => \yii\filters\auth\HttpBasicAuth::className(),
+            'auth' => [$this, 'auth']
+        ];
+
+        return $behaviors;
+    }
+
+    public function auth($username, $password)
     {
 
+        $user = User::findOne(['username' => $username]);
 
-        $actions = parent::actions();
-        unset($actions['index'],$actions['view'],
-            $actions['update'],$actions['delete']);
-        return $actions;
-    }*/
+        if ($user->validatePassword($password)) {
+            return $user;
+        }
 
-    public function actionUser($id)
+        return null;
+    }
+
+
+    public function actionUser($username)
     {
-        $user = User::findOne(['id' => $id]);
+        $user = User::findOne(['username' => $username]);
 
         if ($user) {
-            if ($clientes = Cliente::findOne(['id_user' => $id])) {
-                return $clientes;
-            } else if ($empregado = Empregado::findOne(['id_user' => $id])) {
-                return $empregado;
+            if ($cliente = Cliente::findOne(['id_user' => $user->id])) {
+                return ["tipo" => "cliente", "dados" => $cliente];
+            } else if ($empregado = Empregado::findOne(['id_user' => $user->id])) {
+                return ["tipo" => "empregado", "dados" => $empregado];
+            } else {
+                return ["tipo" => "admin"];
             }
-
         }
     }
-        //ficha
+
+
+
+        //ficha (deprecated)
     public function actionValidacao( $idvalidacao)
     {
         $model = new $this->modelClass;
@@ -57,11 +76,11 @@ class UserController extends ActiveController
                 echo "Operação realizada com sucesso" ;
             else
                 echo "Impossivel validar registo" ;
+
         }
+        throw new NotFoundHttpException("Não existe", 404);
     }
 
-    public function actionAutenticacao($nomeutilizador, $palavrapasse){
 
-    }
 }
 

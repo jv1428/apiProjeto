@@ -15,4 +15,28 @@ class TipoArtigoController extends ActiveController
 {
     public $modelClass = 'app\models\TipoArtigo';
 
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+
+        $behaviors['authenticator'] = [
+            'class' => \yii\filters\auth\HttpBasicAuth::className(),
+            'auth' => [$this, 'auth']
+        ];
+
+        return $behaviors;
+    }
+
+    public function auth($username, $password)
+    {
+
+        $user = User::findOne(['username' => $username]);
+
+        if ($user->validatePassword($password)) {
+            return $user;
+        }
+
+        return null;
+    }
+
 }
