@@ -3,6 +3,7 @@ namespace app\controllers;
 
 use yii\rest\ActiveController;
 use app\models\Cliente;
+use yii\filters\auth\HttpBasicAuth;
 
 class ClienteController extends ActiveController
 {
@@ -17,4 +18,13 @@ class ClienteController extends ActiveController
 
         return $dados;
     }
+
+//    public function behaviors()
+//    {
+//        return [
+//            'basicAuth' => [
+//                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+//            ],
+//        ];
+//    }
 }

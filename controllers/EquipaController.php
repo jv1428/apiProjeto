@@ -11,6 +11,7 @@ namespace app\controllers;
 
 use yii\rest\ActiveController;
 use app\models\Equipa;
+use yii\filters\auth\HttpBasicAuth;
 
 class EquipaController extends ActiveController
 {
@@ -25,4 +26,13 @@ class EquipaController extends ActiveController
 
         return $dados;
     }
+
+//    public function behaviors()
+//    {
+//        return [
+//            'basicAuth' => [
+//                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+//            ],
+//        ];
+//    }
 }

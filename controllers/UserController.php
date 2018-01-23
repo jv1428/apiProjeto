@@ -43,25 +43,43 @@ class UserController extends ActiveController
         }
     }
         //ficha
-    public function actionValidacao( $idvalidacao)
-    {
-        $model = new $this->modelClass;
-        $utilizador = $model :: find()->where(['IdValidacao' => $idvalidacao])->one();
-        if(is_null( $utilizador))
-            echo "Erro durante validacao..." ;
-        else
-        {
-            $utilizador->IdValidacao = " ";
-            $utilizador->Estado= 2;
-            if($utilizador->save ())
-                echo "Operação realizada com sucesso" ;
-            else
-                echo "Impossivel validar registo" ;
-        }
-    }
+//    public function actionValidacao( $idvalidacao)
+//    {
+//        $model = new $this->modelClass;
+//        $utilizador = $model :: find()->where(['IdValidacao' => $idvalidacao])->one();
+//        if(is_null( $utilizador))
+//            echo "Erro durante validacao..." ;
+//        else
+//        {
+//            $utilizador->IdValidacao = " ";
+//            $utilizador->Estado= 2;
+//            if($utilizador->save ())
+//                echo "Operação realizada com sucesso" ;
+//            else
+//                echo "Impossivel validar registo" ;
+//        }
+//    }
+//
+//    public function actionAutenticacao($nomeutilizador, $palavrapasse){
+//
+//    }
 
-    public function actionAutenticacao($nomeutilizador, $palavrapasse){
+//    public function behaviors()
+//    {
+//        return [
+//            'basicAuth' => [
+//                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+//                'auth' => function ($username, $password) {
+//                    $user = User::find()->where(['username' => $username])->one();
+//                    if ($user->verifyPassword($password)) {
+//                        return $user;
+//                    }
+//                    return null;
+//                },
+//            ],
+//        ];
+//    }
 
-    }
+
 }
 
