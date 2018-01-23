@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 use app\models\MeioPagamento;
+use app\models\User;
 
 use yii\rest\ActiveController;
 

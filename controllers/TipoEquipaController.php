@@ -10,6 +10,7 @@ namespace app\controllers;
 
 
 use yii\rest\ActiveController;
+use app\models\User;
 
 class TipoEquipaController extends ActiveController
 {

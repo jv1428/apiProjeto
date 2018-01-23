@@ -11,6 +11,7 @@ namespace app\controllers;
 
 use yii\rest\ActiveController;
 use app\models\Equipa;
+use app\models\User;
 use yii\filters\auth\HttpBasicAuth;
 
 class EquipaController extends ActiveController

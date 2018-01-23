@@ -10,6 +10,7 @@ namespace app\controllers;
 
 
 use yii\rest\ActiveController;
+use app\models\User;
 use app\models\Estado;
 
 class EstadoController extends ActiveController

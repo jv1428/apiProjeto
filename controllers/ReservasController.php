@@ -10,6 +10,7 @@ namespace app\controllers;
 
 
 use app\models\Reserva;
+use app\models\User;
 use yii\rest\ActiveController;
 use yii\filters\auth\HttpBasicAuth;
 

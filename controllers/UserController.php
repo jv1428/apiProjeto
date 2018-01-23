@@ -19,6 +19,7 @@ class UserController extends ActiveController
 {
     public $modelClass = 'app\models\User';
 
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();

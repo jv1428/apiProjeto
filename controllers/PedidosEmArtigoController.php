@@ -9,6 +9,7 @@
 namespace app\controllers;
 
 use app\models\PedidosEmArtigo;
+use app\models\User;
 use app\models\Pedidos;
 
 use yii\rest\ActiveController;

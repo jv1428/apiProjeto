@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 use app\models\TipoArtigo;
+use app\models\User;
 
 use yii\rest\ActiveController;
 
