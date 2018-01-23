@@ -11,6 +11,7 @@ namespace app\controllers;
 
 use yii\rest\ActiveController;
 use app\models\Fatura;
+use yii\filters\auth\HttpBasicAuth;
 
 class FaturaController extends ActiveController
 {
@@ -57,4 +58,13 @@ class FaturaController extends ActiveController
 
         return $dados;
     }
+
+//    public function behaviors()
+//    {
+//        return [
+//            'basicAuth' => [
+//                'class' => \yii\filters\auth\HttpBasicAuth::className(),
+//            ],
+//        ];
+//    }
 }

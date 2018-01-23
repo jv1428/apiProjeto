@@ -212,7 +212,7 @@ class User extends ActiveRecord implements IdentityInterface
 
         self::findByUsername($dados["username"]);
 
-        return $this->validatePassword($dados[$this->password]);
+        return $this->validatePassword($dados[$this->password_hash]);
 
     }
 }
