@@ -57,6 +57,7 @@ class MesaController extends ActiveController
             $mesa->save();
 
             return ["mesa"=>$id, "condicao"=>$mesa->condicao];
+            //dfgdf
 }
     }
 
