@@ -79,15 +79,6 @@ $config = [
                         '{username}' => '<username:\\w+>',
                     ],
 
-                    [
-                        'class' => 'yii\rest\UrlRule',
-                        'controller' => 'mesa',
-                        'extraPatterns' => [
-                            'GET {id}/condicao' => 'mesa',
-                        ],
-
-                    ]
-
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
@@ -130,8 +121,10 @@ $config = [
 
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' =>['mesa']
-
+                    'controller' =>['mesa'],
+                    'extraPatterns' => [
+                        'GET {id}/condicao' => 'mesa',
+                    ],
                 ],
 
                 [
