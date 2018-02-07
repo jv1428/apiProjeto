@@ -54,10 +54,13 @@ class MesaController extends ActiveController
                 $mesa->condicao = "ocupada";
             }
 
-            $mesa->save();
+            if($mesa->save())
+            {
+                return ["mesa"=>$id_mesa, "condicao"=>$mesa->condicao];
+            }
+        }
 
-            return ["mesa"=>$id_mesa, "condicao"=>$mesa->condicao];
-}
+        return null;
     }
 
 }
