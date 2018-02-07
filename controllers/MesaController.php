@@ -41,4 +41,23 @@ class MesaController extends ActiveController
         return null;
     }
 
+    public function actionMesa($id_mesa)
+    {
+        $mesa = Mesa::findOne(['id' => $id_mesa]);
+
+        if ($mesa) {
+
+            if($mesa->condicao == "ocupada") {
+                $mesa->condicao = "livre";
+            }
+            else {
+                $mesa->condicao = "ocupada";
+            }
+
+            $mesa->save();
+
+            return ["mesa"=>$id_mesa, "condicao"=>$mesa->condicao];
+}
+    }
+
 }
