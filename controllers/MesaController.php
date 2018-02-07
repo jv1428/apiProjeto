@@ -41,9 +41,9 @@ class MesaController extends ActiveController
         return null;
     }
 
-    public function actionMesa($id_mesa)
+    public function actionMesa($id)
     {
-        $mesa = Mesa::findOne(['id' => $id_mesa]);
+        $mesa = Mesa::findOne(['id' => $id]);
 
         if ($mesa) {
 
@@ -56,7 +56,7 @@ class MesaController extends ActiveController
 
             $mesa->save();
 
-            return ["mesa"=>$id_mesa, "condicao"=>$mesa->condicao];
+            return ["mesa"=>$id, "condicao"=>$mesa->condicao];
 }
     }
 
