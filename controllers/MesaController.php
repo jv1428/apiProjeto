@@ -9,9 +9,10 @@
 namespace app\controllers;
 
 
-use yii\rest\ActiveController;
+use yii\db\Query;
 use app\models\User;
 use app\models\Mesa;
+use yii\rest\ActiveController;
 
 class MesaController extends ActiveController
 {
@@ -61,6 +62,25 @@ class MesaController extends ActiveController
         }
 
         return null;
+    }
+
+    public function actionEstado()
+    {
+        $mesas = (new Query())
+                ->select('numero, condicao')
+                ->from(Mesa::tableName())
+                ->all();
+        
+
+        $dados = [];
+
+        foreach ($mesas as $num => $con) 
+        {
+            //\array_push($dados, [$num => $con]);
+            $dados[$con["numero"]] = $con["condicao"];
+        }
+        //return $mesas;
+        return $dados;
     }
 
 }

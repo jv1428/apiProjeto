@@ -124,6 +124,7 @@ $config = [
                     'controller' =>['mesa'],
                     'extraPatterns' => [
                         'GET {id}/condicao' => 'mesa',
+                        'GET condicao' => 'estado',
                     ],
                 ],
 
